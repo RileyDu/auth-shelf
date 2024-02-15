@@ -33,9 +33,9 @@ function ShelfPage() {
       </form>
       <h2>Shelf</h2>
       <ul>
-        {items.map((item) => (
+        {items.map((item , i) => (
           <li>
-            <img src={item.image_url}></img>
+            <img key={i} src={item.image_url}></img>
             <p>{item.description}</p>
             <button onClick={() => deleteItem(item)}> DELETE </button>
           </li>
