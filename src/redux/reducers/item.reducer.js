@@ -1,5 +1,3 @@
-
-
 const itemReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_ITEMS':
