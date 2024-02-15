@@ -22,10 +22,11 @@ router.get("/", (req, res) => {
  * Add an item for the logged in user to the shelf
  */
 router.post('/', (req, res) => {
+  console.log("sending data to database");
+  console.log('req.user:', req.user);
   // endpoint functionality
   const queryText = `insert into "item" ("description", "image_url","user_id") values ($1,$2,$3);`;
-  //need to change user id to acctual user (not hard code)
-  pool.query(queryText,[req.body.description, req.body.image_url, 1]).then(()=>{
+  pool.query(queryText,[req.body.description, req.body.image_url, req.user.id]).then(()=>{
     res.sendStatus(201);
 
   }).catch((error)=>{
