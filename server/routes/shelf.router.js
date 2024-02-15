@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
   const queryText = `insert into "item" ("description", "image_url","user_id") values ($1,$2,$3);`;
   //need to change user id to acctual user (not hard code)
   pool.query(queryText,[req.body.description, req.body.image_url, 1]).then(()=>{
-    res.send(201);
+    res.sendStatus(201);
 
   }).catch((error)=>{
     console.log(error);
