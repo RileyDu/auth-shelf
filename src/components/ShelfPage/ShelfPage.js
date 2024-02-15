@@ -3,13 +3,25 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function ShelfPage() {
   const items = useSelector((store) => store.items);
   const dispatch = useDispatch();
+  // const params = useParams();
+
   useEffect(() => {
     dispatch({ type: "FETCH_ITEMS" });
   }, []);
+
+  function deleteItem(item) {
+    //delete button triggers this and sends a DELETE request to db w/id
+    console.log('item.id:', item.id);
+    dispatch({
+      type: "DELETE_ITEM",
+      payload: item.id,
+    });
+  }
 
   return (
     <div className="container">
@@ -25,10 +37,8 @@ function ShelfPage() {
           <li>
             <img src={item.image_url}></img>
             <p>{item.description}</p>
-            <button> DELETE </button>
+            <button onClick={() => deleteItem(item)}> DELETE </button>
           </li>
-          // maps thru the movies array from the store
-          // list item was used to allow componetitization
         ))}
       </ul>
     </div>
