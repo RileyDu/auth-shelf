@@ -28,11 +28,16 @@ router.post('/', (req, res) => {
   // endpoint functionality
 });
 
-/**
- * Delete an item if it's something the logged in user added
- */
-router.delete('/:id', (req, res) => {
-  // endpoint functionality
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
+  pool
+    .query('DELETE FROM "item" WHERE id=$1', [req.params.id])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error("Error in PUT /api/shelf/:id", err);
+      res.sendStatus(500);
+    });
 });
 
 /**
