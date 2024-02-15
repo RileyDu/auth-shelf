@@ -4,7 +4,17 @@ function ShelfPage() {
   return (
     <div className="container">
       <h2>Shelf</h2>
-      <p>All of the available items can be seen here.</p>
+      <ul>
+        <li> AN ITEM PLACEHOLDER 
+          {/* items.map */}
+        </li>
+      </ul>
+      <h2>Add Item</h2>
+      <form>
+        <input placeholder='Item Name' type='text'/>
+        <input placeholder='Item URL' type='url'/>
+        <button>SUBMIT ITEM</button>
+      </form>
     </div>
   );
 }
